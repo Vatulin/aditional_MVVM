@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white">
+    <data>
+        <variable
+            name="ViewModel"
+            type="com.example.a151124_practic.CustomViewModel" />
+    </data>
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:weightSum="2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ПятерОчка"
+                android:textSize="40sp" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/logo"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/goods"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="40dp">
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Молоко"
+                    android:textSize="30sp"
+                    android:onCheckedChanged="@{(buttonView, isChecked) -> ViewModel.updateProduct(0, isChecked)}"/>
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Яйца"
+                    android:textSize="30sp"
+                    android:onCheckedChanged="@{(buttonView, isChecked) -> ViewModel.updateProduct(1, isChecked)}"/>
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Хлеб"
+                    android:textSize="30sp"
+                    android:onCheckedChanged="@{(buttonView, isChecked) -> ViewModel.updateProduct(2, isChecked)}"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textSize="20sp">
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Колбаса"
+                    android:textSize="30sp"
+                    android:onCheckedChanged="@{(buttonView, isChecked) -> ViewModel.updateProduct(3, isChecked)}"/>
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Сыр"
+                    android:textSize="30sp"
+                    android:onCheckedChanged="@{(buttonView, isChecked) -> ViewModel.updateProduct(4, isChecked)}"/>
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Масло"
+                    android:textSize="30sp"
+                    android:onCheckedChanged="@{(buttonView, isChecked) -> ViewModel.updateProduct(5, isChecked)}"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Выберите тип доставки"
+            android:textSize="30sp"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Самовывовз"
+                android:textSize="17sp"
+                android:layout_margin="10dp"
+                android:onCheckedChanged="@{(buttonView, isChecked) -> ViewModel.updateDelivery(0, isChecked)}"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Курьер"
+                android:textSize="17sp"
+                android:layout_margin="10dp"
+                android:onCheckedChanged="@{(buttonView, isChecked) -> ViewModel.updateDelivery(1, isChecked)}"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Дрон"
+                android:textSize="17sp"
+                android:layout_margin="10dp"
+                android:onCheckedChanged="@{(buttonView, isChecked) -> ViewModel.updateDelivery(2, isChecked)}"/>
+        </RadioGroup>
+
+        <Switch
+            android:id="@+id/aditional_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Оставить чаевые"
+            android:textSize="30sp"
+            android:onClick="@{() -> ViewModel.GetMoney()}"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <EditText
+            android:id="@+id/ET"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="Введите сумму"
+            android:inputType="number"
+            android:visibility="@{ViewModel.mutableLDEditText}"
+            android:afterTextChanged="@{(s) -> ViewModel.getSumOfMoney(ET)}"/>
+
+        <Button
+            android:id="@+id/SendButton"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:text="Заказать"
+            android:textSize="30sp"
+            android:onClick="@{(rootView) -> ViewModel.SendButton(rootView)}"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+    </LinearLayout>
+</layout>

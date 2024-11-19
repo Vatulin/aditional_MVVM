@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="products">
+        <item>Молоко</item>
+        <item>Яйца</item>
+        <item>Хлеб</item>
+        <item>Колбаса</item>
+        <item>Сыр</item>
+        <item>Масло</item>
+    </string-array>
+</resources>
